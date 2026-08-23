@@ -784,28 +784,58 @@ function renderWrong() {
 }
 
 /* ===== 五年命題矩陣 ===== */
-let statsView = 'detail'; // 'detail'(15古文明細) | 'freq'(全部節點頻率)
+let statsView = 'questions'; // 'questions'(考題一覽) | 'detail'(矩陣) | 'freq'(頻率)
 let statsExpanded = null; // 'nodeId-year' of expanded cell
 
 function renderStats() {
   const rec = studyRecords.bank;
   let html = `<div class="breadcrumb"><a href="#home">首頁</a> › <span>五年命題矩陣</span></div>`;
-  html += `<h1 class="section-title">五年命題矩陣</h1>`;
-  html += `<div class="card"><p class="card-sub">以108課綱部定十五篇核心古文（N31–N45）為列、近五年學測（111–115）為欄，呈現每篇每年是否入題、題號、題型與命題舉證。點格子可展開舉證與來源。</p></div>`;
+  html += `<h1 class="section-title">學測五年考題一覽</h1>`;
+  html += `<div class="card"><p class="card-sub">逐年列出111–115學測國文中，與108課綱部定十五篇核心古文（N31–N45）相關的題目：每題附題號、題型、題幹摘要、考點（能力）、涉及的古文篇名與來源連結。點篇名可跳至該節點。</p></div>`;
   html += `<div class="card matrix-legend"><span class="ml-item"><span class="dot dot-direct"></span>● 直接引文／題組</span><span class="ml-item"><span class="dot dot-option"></span>◐ 選項／字音字義</span><span class="ml-item"><span class="dot dot-disputed"></span>△ 來源分歧待考</span><span class="ml-item"><span class="dot dot-unverified"></span>? 調題號待證</span><span class="ml-item"><span class="dot dot-none"></span>— 未入題</span></div>`;
   html += `<div class="card matrix-disclaimer"><b>說明</b>：此矩陣為「教師解題評析與官方試題互譯」之整理，分類為本站對應考點，<b>非大考中心官方分類</b>。直接（題組／引文）與選項（字音字義）為已確認命題；「?」表示來源標示曾出但未見題號舉證，「△」表示各解題來源說法分歧，皆標記原文來源供核對，部分題號仍待官方逐題核實。113年多篇（含台灣題材三篇、諫逐客書、師說、晚遊六橋待月記）經《cwtc評析》與解題群說法不一，以「△」標示。官方試題可至<a href="https://www.ceec.edu.tw/" target="_blank" rel="noopener">大考中心</a>查證。</div>`;
 
   // 切換鈕
   html += `<div class="stats-toggle">`;
-  html += `<button class="stats-tab${statsView==='detail'?' active':''}" onclick="statsSetView('detail')">15古文明細</button>`;
-  html += `<button class="stats-tab${statsView==='freq'?' active':''}" onclick="statsSetView('freq')">全部節點頻率</button>`;
+  html += `<button class="stats-tab${statsView==='questions'||!statsView?' active':''}" onclick="statsSetView('questions')">考題一覽</button>`;
+  html += `<button class="stats-tab${statsView==='detail'?' active':''}" onclick="statsSetView('detail')">矩陣檢視</button>`;
+  html += `<button class="stats-tab${statsView==='freq'?' active':''}" onclick="statsSetView('freq')">節點頻率</button>`;
   html += `</div>`;
 
   if (statsView === 'detail') {
     html += renderStatsDetail();
-  } else {
+  } else if (statsView === 'freq') {
     html += renderStatsFreq(rec);
+  } else {
+    html += renderQuestions();
   }
+  return html;
+}
+
+function nodeName(id){ const n = knowledgeNodes.find(x=>x.id===id); return n? n.name : id; }
+
+function renderQuestions(){
+  const byYear = questionsByYear();
+  let html = `<div class="q-list">`;
+  examYears.forEach(y => {
+    const qs = byYear[y.id] || [];
+    html += `<div class="card q-year-card">`;
+    html += `<div class="q-year-head"><span class="q-year-tag">${esc(y.label)}</span><span class="q-year-sub">${esc(y.year)} · ${qs.length} 題</span><a class="q-year-src" href="${y.srcUrl}" target="_blank" rel="noopener">${esc(y.srcName)} ↗</a></div>`;
+    if(qs.length===0){ html += `<p class="q-empty">本年無收錄題目</p>`; }
+    qs.forEach(q => {
+      const chips = q.textIds.map(id => `<a class="q-text-chip" href="#node-${id}" title="${esc(nodeName(id))}">${id} ${esc(nodeName(id))}</a>`).join('');
+      const skills = q.skill.split(/[、，]/).map(s=>`<span class="q-skill">${esc(s.trim())}</span>`).join('');
+      html += `<div class="q-item">`;
+      html += `<div class="q-head"><span class="q-num">${/^\d/.test(q.qNum)?('第'+esc(q.qNum)+'題'):esc(q.qNum)}</span><span class="q-type tag tag-level">${esc(q.type)}</span></div>`;
+      html += `<div class="q-stem">${esc(q.stem)}</div>`;
+      html += `<div class="q-skills"><span class="q-skill-label">考點：</span>${skills}</div>`;
+      html += `<div class="q-texts">${chips}</div>`;
+      html += `<a class="q-src" href="${q.sourceUrl}" target="_blank" rel="noopener">來源：${esc(q.sourceName)} ↗</a>`;
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+  html += `</div>`;
   return html;
 }
 
