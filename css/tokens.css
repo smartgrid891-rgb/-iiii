@@ -1,0 +1,187 @@
+/* ===== 學測地科 · 命題地圖 — 設計權杖 ===== */
+/* 主題：地球科學／天文 — 深空夜藍 + 海洋青 + 星芒金 */
+
+:root,
+[data-theme='light'] {
+  /* 表面 — 暖白微藍，如晨霧天空 */
+  --color-bg: #f4f6fb;
+  --color-surface: #ffffff;
+  --color-surface-2: #fafbfd;
+  --color-surface-offset: #eef1f7;
+  --color-surface-offset-2: #e6eaf2;
+  --color-surface-dynamic: #dfe4ee;
+  --color-divider: #dde2ec;
+  --color-border: #cfd6e3;
+
+  /* 文字 — 深空海軍 */
+  --color-text: #0e1626;
+  --color-text-muted: #5a6577;
+  --color-text-faint: #97a0b0;
+  --color-text-inverse: #f5f7fb;
+
+  /* 主色 — 海洋青 */
+  --color-primary: #0b6e7a;
+  --color-primary-hover: #085259;
+  --color-primary-active: #053a40;
+  --color-primary-highlight: #cfe6e8;
+
+  /* 強調 — 星芒金 */
+  --color-accent: #c98a00;
+  --color-accent-hover: #a86f00;
+  --color-accent-highlight: #f3e6c4;
+
+  /* 語意色 */
+  --color-warning: #b26500;
+  --color-error: #b3264e;
+  --color-success: #2f7d3f;
+
+  /* 認知層次色階（資料視覺化） */
+  --lvl-knowledge: #5b8def;   /* 知識 - 天藍 */
+  --lvl-understand: #2bb3a3;  /* 理解 - 青綠 */
+  --lvl-apply: #e8a33d;       /* 應用 - 琥珀 */
+  --lvl-analyze: #d65a6b;     /* 分析 - 熔岩紅 */
+
+  /* 熱度色階（年度×節點矩陣）— 星雲序列：冷→熱 */
+  --heat-0: #eef1f7;
+  --heat-1: #c9d6ec;
+  --heat-2: #8fa8dc;
+  --heat-3: #6b7ec8;
+  --heat-4: #7e5fb8;
+  --heat-5: #b04ea0;
+  --heat-6: #e0654f;
+  --heat-7: #f5a623;
+
+  /* 七大主題色 */
+  --theme-c1: #2f7d3f;  /* 地球的歷史 - 大地綠 */
+  --theme-c2: #8a5a3b;  /* 固體地球 - 岩棕 */
+  --theme-c3: #3a8fbd;  /* 大氣 - 天藍 */
+  --theme-c4: #1a7a8c;  /* 海洋 - 深海青 */
+  --theme-c5: #6b4ea0;  /* 地球與太空 - 星紫 */
+  --theme-c6: #c4622d;  /* 氣候變遷 - 暖橙 */
+  --theme-c7: #4a7d2f;  /* 永續發展 - 草綠 */
+
+  /* 圓角 */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-sm: 0 1px 2px oklch(0.2 0.02 240 / 0.06);
+  --shadow-md: 0 4px 14px oklch(0.2 0.02 240 / 0.08);
+  --shadow-lg: 0 16px 40px oklch(0.2 0.02 240 / 0.14);
+
+  --content-narrow: 640px;
+  --content-default: 1080px;
+  --content-wide: 1280px;
+  --content-full: 100%;
+
+  --font-display: 'Cabinet Grotesk', 'PingFang TC', 'Noto Sans TC', sans-serif;
+  --font-body: 'General Sans', 'PingFang TC', 'Noto Sans TC', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+[data-theme='dark'] {
+  --color-bg: #070b16;
+  --color-surface: #0d1424;
+  --color-surface-2: #111a2e;
+  --color-surface-offset: #0f1828;
+  --color-surface-offset-2: #162032;
+  --color-surface-dynamic: #1b2638;
+  --color-divider: #1a2438;
+  --color-border: #283449;
+
+  --color-text: #d6dcEA;
+  --color-text-muted: #7e8aa0;
+  --color-text-faint: #525c70;
+  --color-text-inverse: #0b1220;
+
+  --color-primary: #45c3d0;
+  --color-primary-hover: #6fd6e0;
+  --color-primary-active: #2a9aa6;
+  --color-primary-highlight: #133a40;
+
+  --color-accent: #e8b44e;
+  --color-accent-hover: #f3c574;
+  --color-accent-highlight: #3d3220;
+
+  --color-warning: #e8a33d;
+  --color-error: #e0657e;
+  --color-success: #5cbf6e;
+
+  --lvl-knowledge: #6fa0f5;
+  --lvl-understand: #3fc9b8;
+  --lvl-apply: #f0b657;
+  --lvl-analyze: #e87a8a;
+
+  --heat-0: #11182a;
+  --heat-1: #1d2c4a;
+  --heat-2: #2e3f7a;
+  --heat-3: #4454b0;
+  --heat-4: #6a4ec0;
+  --heat-5: #a050a0;
+  --heat-6: #e07055;
+  --heat-7: #f5b638;
+
+  --theme-c1: #5cbf6e;
+  --theme-c2: #c4905a;
+  --theme-c3: #5fb0d8;
+  --theme-c4: #3faabf;
+  --theme-c5: #9a7ec8;
+  --theme-c6: #e08a55;
+  --theme-c7: #6fa84a;
+
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.3);
+  --shadow-md: 0 4px 14px oklch(0 0 0 / 0.4);
+  --shadow-lg: 0 16px 40px oklch(0 0 0 / 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg: #070b16;
+    --color-surface: #0d1424;
+    --color-surface-2: #111a2e;
+    --color-surface-offset: #0f1828;
+    --color-surface-dynamic: #1b2638;
+    --color-divider: #1a2438;
+    --color-border: #283449;
+    --color-text: #d6dcea;
+    --color-text-muted: #7e8aa0;
+    --color-text-faint: #525c70;
+    --color-text-inverse: #0b1220;
+    --color-primary: #45c3d0;
+    --color-primary-hover: #6fd6e0;
+    --color-primary-active: #2a9aa6;
+    --color-primary-highlight: #133a40;
+    --color-accent: #e8b44e;
+    --color-accent-hover: #f3c574;
+    --color-accent-highlight: #3d3220;
+    --color-warning: #e8a33d;
+    --color-error: #e0657e;
+    --color-success: #5cbf6e;
+    --lvl-knowledge: #6fa0f5;
+    --lvl-understand: #3fc9b8;
+    --lvl-apply: #f0b657;
+    --lvl-analyze: #e87a8a;
+    --heat-0: #11182a;
+    --heat-1: #1d2c4a;
+    --heat-2: #2e3f7a;
+    --heat-3: #4454b0;
+    --heat-4: #6a4ec0;
+    --heat-5: #a050a0;
+    --heat-6: #e07055;
+    --heat-7: #f5b638;
+    --theme-c1: #5cbf6e;
+    --theme-c2: #c4905a;
+    --theme-c3: #5fb0d8;
+    --theme-c4: #3faabf;
+    --theme-c5: #9a7ec8;
+    --theme-c6: #e08a55;
+    --theme-c7: #6fa84a;
+    --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.3);
+    --shadow-md: 0 4px 14px oklch(0 0 0 / 0.4);
+    --shadow-lg: 0 16px 40px oklch(0 0 0 / 0.5);
+  }
+}
