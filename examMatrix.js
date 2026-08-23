@@ -25,8 +25,8 @@ const examMatrix = [
   { nodeId:'N34', year:'111', level:'option', q:'第26題', type:'字義比較', evidence:'字義題，〈鴻門宴〉與項脊軒志、鹿港乘桴記、諫逐客書等並列比較', sourceUrl:'https://www.cwtc.org.tw/NewsContent.aspx?Key=346C044B3AC94022F47DC2AF9C5D33FF', sourceName:'cwtc評析' },
   { nodeId:'N40', year:'111', level:'option', q:'第26題', type:'字義比較', evidence:'字義題，〈項脊軒志〉與鹿港乘桴記、諫逐客書、鴻門宴等並列比較', sourceUrl:'https://www.cwtc.org.tw/NewsContent.aspx?Key=346C044B3AC94022F47DC2AF9C5D33FF', sourceName:'cwtc評析' },
   { nodeId:'N44', year:'111', level:'option', q:'第26題', type:'字義比較', evidence:'字義題，〈鹿港乘桴記〉與項脊軒志、諫逐客書、鴻門宴等並列比較', sourceUrl:'https://www.cwtc.org.tw/NewsContent.aspx?Key=346C044B3AC94022F47DC2AF9C5D33FF', sourceName:'cwtc評析' },
-  { nodeId:'N31', year:'111', level:'option', q:'未明', type:'待查', evidence:'歷屆矩陣標示111學測曾出，惟未見題號舉證', sourceUrl:'https://tw.amazingtalker.com/blog/zh-tw/k12/74304/', sourceName:'amazingtalker矩陣' },
-  { nodeId:'N32', year:'111', level:'option', q:'未明', type:'待查', evidence:'歷屆矩陣標示111學測曾出，惟未見題號舉證', sourceUrl:'https://tw.amazingtalker.com/blog/zh-tw/k12/74304/', sourceName:'amazingtalker矩陣' },
+  { nodeId:'N31', year:'111', level:'unverified', q:'未明', type:'待查', evidence:'歷屆矩陣標示111學測曾出，惟未見題號舉證', sourceUrl:'https://tw.amazingtalker.com/blog/zh-tw/k12/74304/', sourceName:'amazingtalker矩陣' },
+  { nodeId:'N32', year:'111', level:'unverified', q:'未明', type:'待查', evidence:'歷屆矩陣標示111學測曾出，惟未見題號舉證', sourceUrl:'https://tw.amazingtalker.com/blog/zh-tw/k12/74304/', sourceName:'amazingtalker矩陣' },
 
   /* ===== 112學測 ===== */
   { nodeId:'N31', year:'112', level:'direct', q:'單選第5題', type:'對讀/閱讀理解', evidence:'〈燭之武退秦師〉與〈鴻門宴〉進行對讀', sourceUrl:'https://vocus.cc/article/63dcb8ecfd89780001508db5', sourceName:'vocus 112分析' },
@@ -40,14 +40,15 @@ const examMatrix = [
   /* ===== 113學測 ===== */
   { nodeId:'N40', year:'113', level:'direct', q:'第29題', type:'混合題', evidence:'以硃砂科普知識連結〈項脊軒志〉與《天工開物》', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報解題團' },
   { nodeId:'N31', year:'113', level:'option', q:'未逐條', type:'字義/讀音', evidence:'15篇除師說、大同與小康外13篇均入題，多為單選選項', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報解題團' },
-  { nodeId:'N33', year:'113', level:'option', q:'未逐條', type:'字義/讀音', evidence:'13篇均入題之一', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報解題團' },
+  { nodeId:'N33', year:'113', level:'disputed', q:'未逐條', type:'字義/讀音(分歧)', evidence:'聯合報/未來親子稱13篇均入題；cwtc評析9篇未含諫逐客書，分歧待考', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報 vs cwtc' },
   { nodeId:'N34', year:'113', level:'option', q:'未逐條', type:'字義/讀音', evidence:'13篇均入題之一', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報解題團' },
   { nodeId:'N35', year:'113', level:'option', q:'未逐條', type:'字義/讀音', evidence:'13篇均入題之一', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報解題團' },
   { nodeId:'N36', year:'113', level:'option', q:'未逐條', type:'字義/讀音', evidence:'13篇均入題之一', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報解題團' },
   { nodeId:'N38', year:'113', level:'option', q:'未逐條', type:'字義/讀音', evidence:'13篇均入題之一', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報解題團' },
   { nodeId:'N39', year:'113', level:'option', q:'未逐條', type:'字義/讀音', evidence:'13篇均入題之一', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報解題團' },
-  { nodeId:'N41', year:'113', level:'option', q:'未逐條', type:'字義/讀音', evidence:'13篇均入題之一', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報解題團' },
+  { nodeId:'N41', year:'113', level:'disputed', q:'未逐條', type:'字義/讀音(分歧)', evidence:'聯合報/未來親子稱13篇均入題；cwtc評析9篇未含晚遊六橋待月記，分歧待考', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報 vs cwtc' },
   { nodeId:'N42', year:'113', level:'option', q:'未逐條', type:'字義/讀音', evidence:'13篇均入題之一', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報解題團' },
+  { nodeId:'N37', year:'113', level:'disputed', q:'未逐條', type:'字義/讀音(分歧)', evidence:'cwtc評析9篇含師說；聯合報/未來親子稱師說未入題，分歧待考', sourceUrl:'https://www.cwtc.org.tw/NewsContent.aspx?Key=6A9F431D16ACEA2B2B669D62E3389FF5', sourceName:'cwtc vs 聯合報' },
   { nodeId:'N43', year:'113', level:'disputed', q:'未逐條', type:'字義/讀音(分歧)', evidence:'聯合報/未來親子稱13篇均入題；cwtc則稱台灣核心古文皆未出現，分歧待考', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報 vs cwtc' },
   { nodeId:'N44', year:'113', level:'disputed', q:'未逐條', type:'字義/讀音(分歧)', evidence:'聯合報/未來親子稱13篇均入題；cwtc則稱台灣核心古文皆未出現，分歧待考', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報 vs cwtc' },
   { nodeId:'N45', year:'113', level:'disputed', q:'未逐條', type:'字義/讀音(分歧)', evidence:'聯合報/未來親子稱13篇均入題；cwtc則稱台灣核心古文皆未出現，分歧待考', sourceUrl:'https://udn.com/news/story/123858/7724250', sourceName:'聯合報 vs cwtc' },
@@ -73,10 +74,16 @@ const examMatrix = [
   { nodeId:'N33', year:'115', level:'direct', q:'第4題', type:'對讀/推論研判', evidence:'第4題三篇對讀之一（與鴻門宴、燭之武退秦師、孟子）', sourceUrl:'https://cerclearning.tp.edu.tw/news/datapage/115', sourceName:'cerclearning' },
   { nodeId:'N34', year:'115', level:'direct', q:'第4題', type:'對讀/推論研判', evidence:'第4題三篇對讀之一', sourceUrl:'https://cerclearning.tp.edu.tw/news/datapage/115', sourceName:'cerclearning' },
   { nodeId:'N40', year:'115', level:'direct', q:'混合題', type:'混合題/多重文本', evidence:'混合題「聽見她的聲音」列〈項脊軒志〉為多重文本素材，與先妣事略等探究女性聲音', sourceUrl:'https://cerclearning.tp.edu.tw/news/datapage/115', sourceName:'cerclearning' },
-  { nodeId:'N35', year:'115', level:'option', q:'第30-31題', type:'選項/作品引用', evidence:'列舉諸葛亮與曹操作品，呈現以「表」陳情的聲音（推測涉出師表）', sourceUrl:'https://cerclearning.tp.edu.tw/news/datapage/115', sourceName:'cerclearning' }
+  { nodeId:'N35', year:'115', level:'unverified', q:'第30-31題', type:'選項/作品引用(推測)', evidence:'列舉諸葛亮與曹操作品，呈現以「表」陳情；是否直接涉出師表待官方核對', sourceUrl:'https://cerclearning.tp.edu.tw/news/datapage/115', sourceName:'cerclearning' }
 ];
 
 /* 由 examMatrix 推導每個 15 古文節點的五年出現次數（不含 disputed？這裡含 disputed 視為有出） */
 function examFreqForNode(nodeId) {
-  return examMatrix.filter(e => e.nodeId === nodeId && e.level !== 'none').length;
+  // 只計「確認入題」的唯一年份（direct/option），disputed/unverified 不計入頻次
+  const yrs = new Set(examMatrix.filter(e => e.nodeId === nodeId && (e.level === 'direct' || e.level === 'option')).map(e => e.year));
+  return yrs.size;
+}
+/* 待考（disputed/unverified）年份數，供UI顯示「X + Y待考」 */
+function examPendingForNode(nodeId) {
+  return new Set(examMatrix.filter(e => e.nodeId === nodeId && (e.level === 'disputed' || e.level === 'unverified')).map(e => e.year)).size;
 }

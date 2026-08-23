@@ -792,8 +792,8 @@ function renderStats() {
   let html = `<div class="breadcrumb"><a href="#home">首頁</a> › <span>五年命題矩陣</span></div>`;
   html += `<h1 class="section-title">五年命題矩陣</h1>`;
   html += `<div class="card"><p class="card-sub">以108課綱部定十五篇核心古文（N31–N45）為列、近五年學測（111–115）為欄，呈現每篇每年是否入題、題號、題型與命題舉證。點格子可展開舉證與來源。</p></div>`;
-  html += `<div class="card matrix-legend"><span class="ml-item"><span class="dot dot-direct"></span>● 直接引文／題組</span><span class="ml-item"><span class="dot dot-option"></span>◐ 選項／字音字義</span><span class="ml-item"><span class="dot dot-disputed"></span>△ 來源分歧</span><span class="ml-item"><span class="dot dot-none"></span>— 未入題</span></div>`;
-  html += `<div class="card matrix-disclaimer"><b>說明</b>：節點對應為本站考點分類，非大考中心官方分類。113年台灣題材三篇（勸和論、鹿港乘桴記、畫菊自序）因聯合報解題團與cwtc評析分歧，標△待考。官方試題可至<a href="https://www.ceec.edu.tw/" target="_blank" rel="noopener">大考中心</a>查證。</div>`;
+  html += `<div class="card matrix-legend"><span class="ml-item"><span class="dot dot-direct"></span>● 直接引文／題組</span><span class="ml-item"><span class="dot dot-option"></span>◐ 選項／字音字義</span><span class="ml-item"><span class="dot dot-disputed"></span>△ 來源分歧待考</span><span class="ml-item"><span class="dot dot-unverified"></span>? 調題號待證</span><span class="ml-item"><span class="dot dot-none"></span>— 未入題</span></div>`;
+  html += `<div class="card matrix-disclaimer"><b>說明</b>：此矩陣為「教師解題評析與官方試題互譯」之整理，分類為本站對應考點，<b>非大考中心官方分類</b>。直接（題組／引文）與選項（字音字義）為已確認命題；「?」表示來源標示曾出但未見題號舉證，「△」表示各解題來源說法分歧，皆標記原文來源供核對，部分題號仍待官方逐題核實。113年多篇（含台灣題材三篇、諫逐客書、師說、晚遊六橋待月記）經《cwtc評析》與解題群說法不一，以「△」標示。官方試題可至<a href="https://www.ceec.edu.tw/" target="_blank" rel="noopener">大考中心</a>查證。</div>`;
 
   // 切換鈕
   html += `<div class="stats-toggle">`;
@@ -817,6 +817,7 @@ function levelDot(level){
   if(level==='direct') return {cls:'dot-direct', ch:'●', cell:'cell-direct'};
   if(level==='option') return {cls:'dot-option', ch:'◐', cell:'cell-option'};
   if(level==='disputed') return {cls:'dot-disputed', ch:'△', cell:'cell-disputed'};
+  if(level==='unverified') return {cls:'dot-unverified', ch:'?', cell:'cell-unverified'};
   return {cls:'dot-none', ch:'—', cell:'cell-none'};
 }
 
@@ -827,6 +828,7 @@ function renderStatsDetail(){
   html += `<th>5年累計</th></tr></thead><tbody>`;
   g15.forEach(n => {
     const freq = examFreqForNode(n.id);
+    const pend = examPendingForNode(n.id);
     html += `<tr><td><a href="#node-${n.id}" class="mnode-id">${n.id}</a></td><td class="node-name"><a href="#node-${n.id}">${esc(n.name)}</a></td>`;
     examYears.forEach(y => {
       const entries = examMatrix.filter(e => e.nodeId===n.id && e.year===y.id);
@@ -841,7 +843,7 @@ function renderStatsDetail(){
         html += `<td class="cell ${d.cell}${isOpen?' open':''}" onclick="statsToggleCell('${n.id}','${y.id}')"><span class="dot ${d.cls}">${d.ch}</span><span class="cell-count">${entries.length}</span></td>`;
       }
     });
-    html += `<td class="cell-freq"><b>${freq}</b><span class="freq-sub">/5</span></td></tr>`;
+    html += `<td class="cell-freq"><b>${freq}</b><span class="freq-sub">/5</span>${pend>0?` <span class="pend">+${pend}待考</span>`:''}</td></tr>`;
     // 展開列
     examYears.forEach(y => {
       const entries = examMatrix.filter(e => e.nodeId===n.id && e.year===y.id);
@@ -865,7 +867,7 @@ function renderStatsDetail(){
   return html;
 }
 
-function rank(level){ return {direct:3,option:2,disputed:1,none:0}[level]||0; }
+function rank(level){ return {direct:3,option:2,disputed:1,unverified:1,none:0}[level]||0; }
 
 function statsToggleCell(nodeId, yearId){
   const key = statsCellKey(nodeId, yearId);
