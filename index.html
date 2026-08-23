@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>學測國文複習系統</title>
+<meta name="description" content="結合認知心理學與學測大考數據分析的國文複習平台。108課綱知識節點導航。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23b9392f'/><text x='16' y='23' font-size='18' font-family='serif' font-weight='700' fill='white' text-anchor='middle'>文</text></svg>">
+</head>
+<body>
+<div class="app">
+  <!-- 側欄 -->
+  <aside id="sidebar"></aside>
+
+  <!-- 主內容 -->
+  <main id="main" role="main">
+    <div class="topbar">
+      <button class="back-link" id="backBtn" style="display:none" onclick="goBackInApp()">← 上一頁</button>
+      <button class="theme-toggle" data-theme-toggle aria-label="切換深色模式">月</button>
+    </div>
+    <div id="view"></div>
+  </main>
+</div>
+
+<!-- 行動版選單按鈕 -->
+<button class="menu-btn" id="menuBtn" aria-label="開啟選單">≡</button>
+
+<!-- 內容腳本 -->
+<script src="data.js"></script>
+<script src="questionBank.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
