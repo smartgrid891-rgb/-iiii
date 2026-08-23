@@ -40,6 +40,13 @@ const BUSTER_DATA = [
     coreTitle:'文言句式與修辭辨識',
     core:'本質是文言文的「文言句式」（N11）與修辭的「修辭辨識」（N05）。古今夾敘的編排只是降低閱讀門檻，解題仍須回到畫線句的結構分析。',
     strategy:'策略：忽略譯註的干擾，直接分析畫線句——找虛詞、判句式、辨修辭，按字→句→篇層次推進。'
+  },
+  {
+    surface:'某題節錄15古文之一（如《赤壁賦》《鴻門宴》《師說》），問「作者情志／全篇主旨／某段敘事作用」，並搭配看似合理的現代化選項。',
+    surfaceTitle:'近年學測示例：古文15篇情志題',
+    coreTitle:'體裁＋結構＋情志三軸判讀',
+    core:'本質是15古文的「體裁特徵＋結構手法＋作者情志」（N31-N45）。現代化選項與情境包裝只是干擾，解題須回到體裁定方向、抓結構線索（對比／主客問答／今昔對照／托物言志）、再推作者情志。',
+    strategy:'策略：先辨體裁（論說/記敘/賦/小說/遊記）→ 抓結構線索 → 回文本找情志證據，不作脫離文本的推論。'
   }
 ];
 
@@ -248,7 +255,7 @@ function renderNodeView(nodeId) {
   const features = (m.keyFeatures || []).filter(f => f.node === nodeId);
   const exams = (m.examQuestions || []).filter(f => Array.isArray(f.node) ? f.node.includes(nodeId) : f.node === nodeId);
 
-  let html = `<div class="breadcrumb"><a href="#home">首頁</a> › <a href="#node-${nodeId}">${esc(m.title.replace(/模組[一二三四五六七]：/, ''))}</a> › <span>${esc(node.name)}</span></div>`;
+  let html = `<div class="breadcrumb"><a href="#home">首頁</a> › <a href="#node-${nodeId}">${esc(m.title.replace(/模組[一二三四五六七八九]：/, ''))}</a> › <span>${esc(node.name)}</span></div>`;
   html += `<h1 class="section-title">${esc(node.name)} <span style="font-size:13px;color:var(--ink-faint);font-weight:400">（${node.id} · 近五年命題 ${node.exam5y} 組）</span></h1>`;
   html += `<div class="card"><span class="card-badge">${m.badge}</span><div class="card-title">${esc(m.title)}</div><div class="card-sub">${esc(m.subtitle)}</div></div>`;
 
