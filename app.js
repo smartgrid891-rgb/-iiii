@@ -784,13 +784,98 @@ function renderWrong() {
 }
 
 /* ===== 五年命題矩陣 ===== */
+let statsView = 'detail'; // 'detail'(15古文明細) | 'freq'(全部節點頻率)
+let statsExpanded = null; // 'nodeId-year' of expanded cell
+
 function renderStats() {
   const rec = studyRecords.bank;
   let html = `<div class="breadcrumb"><a href="#home">首頁</a> › <span>五年命題矩陣</span></div>`;
   html += `<h1 class="section-title">五年命題矩陣</h1>`;
-  html += `<div class="card"><p class="card-sub">以節點為列，呈現近五年命題頻率與你的掌握度。掌握度＝該節點題目答對次數／作答次數。空白表示尚未作答。點節點名稱可前往複習。</p></div>`;
+  html += `<div class="card"><p class="card-sub">以108課綱部定十五篇核心古文（N31–N45）為列、近五年學測（111–115）為欄，呈現每篇每年是否入題、題號、題型與命題舉證。點格子可展開舉證與來源。</p></div>`;
+  html += `<div class="card matrix-legend"><span class="ml-item"><span class="dot dot-direct"></span>● 直接引文／題組</span><span class="ml-item"><span class="dot dot-option"></span>◐ 選項／字音字義</span><span class="ml-item"><span class="dot dot-disputed"></span>△ 來源分歧</span><span class="ml-item"><span class="dot dot-none"></span>— 未入題</span></div>`;
+  html += `<div class="card matrix-disclaimer"><b>說明</b>：節點對應為本站考點分類，非大考中心官方分類。113年台灣題材三篇（勸和論、鹿港乘桴記、畫菊自序）因聯合報解題團與cwtc評析分歧，標△待考。官方試題可至<a href="https://www.ceec.edu.tw/" target="_blank" rel="noopener">大考中心</a>查證。</div>`;
+
+  // 切換鈕
+  html += `<div class="stats-toggle">`;
+  html += `<button class="stats-tab${statsView==='detail'?' active':''}" onclick="statsSetView('detail')">15古文明細</button>`;
+  html += `<button class="stats-tab${statsView==='freq'?' active':''}" onclick="statsSetView('freq')">全部節點頻率</button>`;
+  html += `</div>`;
+
+  if (statsView === 'detail') {
+    html += renderStatsDetail();
+  } else {
+    html += renderStatsFreq(rec);
+  }
+  return html;
+}
+
+function statsSetView(v){ statsView=v; statsExpanded=null; renderRoute(routeFromLocation()); }
+
+function statsCellKey(nodeId, year){ return nodeId+'-'+year; }
+
+function levelDot(level){
+  if(level==='direct') return {cls:'dot-direct', ch:'●', cell:'cell-direct'};
+  if(level==='option') return {cls:'dot-option', ch:'◐', cell:'cell-option'};
+  if(level==='disputed') return {cls:'dot-disputed', ch:'△', cell:'cell-disputed'};
+  return {cls:'dot-none', ch:'—', cell:'cell-none'};
+}
+
+function renderStatsDetail(){
+  const g15 = knowledgeNodes.filter(n => n.module===8);
+  let html = `<div class="matrix-wrap"><table class="matrix-table matrix-detail"><thead><tr><th>節點</th><th>古文</th>`;
+  examYears.forEach(y => { html += `<th class="th-year">${esc(y.label)}<span class="th-sub">${esc(y.year)}</span></th>`; });
+  html += `<th>5年累計</th></tr></thead><tbody>`;
+  g15.forEach(n => {
+    const freq = examFreqForNode(n.id);
+    html += `<tr><td><a href="#node-${n.id}" class="mnode-id">${n.id}</a></td><td class="node-name"><a href="#node-${n.id}">${esc(n.name)}</a></td>`;
+    examYears.forEach(y => {
+      const entries = examMatrix.filter(e => e.nodeId===n.id && e.year===y.id);
+      const key = statsCellKey(n.id, y.id);
+      const isOpen = statsExpanded===key;
+      if(entries.length===0){
+        html += `<td class="cell cell-none"><span class="dot dot-none">—</span></td>`;
+      } else {
+        // 取最高強度代表
+        const top = entries.reduce((a,b)=> rank(b.level)>rank(a.level)?b:a, entries[0]);
+        const d = levelDot(top.level);
+        html += `<td class="cell ${d.cell}${isOpen?' open':''}" onclick="statsToggleCell('${n.id}','${y.id}')"><span class="dot ${d.cls}">${d.ch}</span><span class="cell-count">${entries.length}</span></td>`;
+      }
+    });
+    html += `<td class="cell-freq"><b>${freq}</b><span class="freq-sub">/5</span></td></tr>`;
+    // 展開列
+    examYears.forEach(y => {
+      const entries = examMatrix.filter(e => e.nodeId===n.id && e.year===y.id);
+      const key = statsCellKey(n.id, y.id);
+      if(statsExpanded===key && entries.length){
+        html += `<tr class="detail-row"><td></td><td colspan="${examYears.length+2}"><div class="detail-box">`;
+        html += `<div class="detail-title">${esc(y.label)} · ${esc(n.name)}</div>`;
+        entries.forEach(e => {
+          const d = levelDot(e.level);
+          html += `<div class="detail-entry"><span class="dot ${d.cls}">${d.ch}</span><span class="de-q">${esc(e.q)}</span><span class="de-type tag tag-level">${esc(e.type)}</span><span class="de-evidence">${esc(e.evidence)}</span><a class="de-src" href="${e.sourceUrl}" target="_blank" rel="noopener">來源：${esc(e.sourceName)} ↗</a></div>`;
+        });
+        html += `</div></td></tr>`;
+      }
+    });
+  });
+  html += `</tbody></table></div>`;
+  // 年度來源
+  html += `<div class="card"><div class="card-title">年度命題來源</div><ul class="src-list">`;
+  examYears.forEach(y => { html += `<li class="src-item"><b>${esc(y.label)}</b>（${esc(y.year)}）：${esc(y.srcName)} <a href="${y.srcUrl}" target="_blank" rel="noopener">查看 ↗</a></li>`; });
+  html += `</ul></div>`;
+  return html;
+}
+
+function rank(level){ return {direct:3,option:2,disputed:1,none:0}[level]||0; }
+
+function statsToggleCell(nodeId, yearId){
+  const key = statsCellKey(nodeId, yearId);
+  statsExpanded = (statsExpanded===key) ? null : key;
+  renderRoute(routeFromLocation());
+}
+
+function renderStatsFreq(rec){
   const maxFreq = Math.max(...knowledgeNodes.map(n => n.exam5y), 1);
-  html += `<div class="matrix-wrap"><table class="matrix-table"><thead><tr><th>節點</th><th>名稱</th><th>五年命題</th><th>頻率</th><th>掌握度</th></tr></thead><tbody>`;
+  let html = `<div class="matrix-wrap"><table class="matrix-table"><thead><tr><th>節點</th><th>名稱</th><th>五年命題</th><th>頻率</th><th>掌握度</th></tr></thead><tbody>`;
   knowledgeNodes.forEach(n => {
     const nodeRecs = Object.entries(rec).filter(([k, r]) => r.nodes === n.id);
     const attempts = nodeRecs.reduce((s, [, r]) => s + (r.a||0), 0);

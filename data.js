@@ -45,21 +45,21 @@ const knowledgeNodes = [
   { id:'N29', module:7, code:'5-V-4', name:'審題與立意',        exam5y:3, detail:'題幹解讀、立意角度、謀篇布局' },
   { id:'N30', module:7, code:'5-V-4', name:'寫作策略與評分', exam5y:2, detail:'結構層次、語言精確、評分量尺對照' },
   // 模組八：108課綱推薦選文15篇
-  { id:'N31', module:8, code:'古15', name:'燭之武退秦師',     exam5y:3, detail:'外交遊說策略、人物形象、左傳敘事' },
-  { id:'N32', module:8, code:'古15', name:'大同與小康',       exam5y:2, detail:'大同小康對比、儒家政治理想、禮記思想' },
-  { id:'N33', module:8, code:'古15', name:'諫逐客書',         exam5y:2, detail:'論說文勸諫藝術、排比鋪陳、李斯修辭' },
-  { id:'N34', module:8, code:'古15', name:'鴻門宴',           exam5y:3, detail:'人物性格刻畫、史傳敘事、楚漢相爭' },
-  { id:'N35', module:8, code:'古15', name:'出師表',           exam5y:3, detail:'奏議文體、忠誠託孤、情理兼備' },
-  { id:'N36', module:8, code:'古15', name:'桃花源記',         exam5y:2, detail:'寓言體、理想世界、陶淵明思想' },
-  { id:'N37', module:8, code:'古15', name:'師說',             exam5y:3, detail:'論說文結構、尊師重道、韓愈古文運動' },
-  { id:'N38', module:8, code:'古15', name:'虯髯客傳',         exam5y:2, detail:'唐傳奇、豪俠形象、小說敘事' },
-  { id:'N39', module:8, code:'古15', name:'赤壁賦',           exam5y:4, detail:'賦體主客對答、人生哲理、蘇軾思想' },
-  { id:'N40', module:8, code:'古15', name:'項脊軒志',         exam5y:2, detail:'抒情記敘、親情書寫、歸有光細節描寫' },
-  { id:'N41', module:8, code:'古15', name:'晚遊六橋待月記',   exam5y:1, detail:'小品遊記、景物描寫、袁宏道性靈' },
-  { id:'N42', module:8, code:'古15', name:'勞山道士',         exam5y:2, detail:'志怪小說、寓言諷刺、蒲松齡聊齋' },
-  { id:'N43', module:8, code:'古15', name:'勸和論',           exam5y:1, detail:'議論文、地方和睦、鄭用錫臺灣書寫' },
-  { id:'N44', module:8, code:'古15', name:'鹿港乘桴記',       exam5y:1, detail:'遊記鄉土書寫、洪繻今昔對比' },
-  { id:'N45', module:8, code:'古15', name:'畫菊自序',         exam5y:1, detail:'托物言志、駢文特色、張李德和' }
+  { id:'N31', module:8, code:'古15', name:'燭之武退秦師', exam5y:5, detail:'外交遊說策略、人物形象、左傳敘事' },
+  { id:'N32', module:8, code:'古15', name:'大同與小康', exam5y:2, detail:'大同小康對比、儒家政治理想、禮記思想' },
+  { id:'N33', module:8, code:'古15', name:'諫逐客書', exam5y:4, detail:'論說文勸諫藝術、排比鋪陳、李斯修辭' },
+  { id:'N34', module:8, code:'古15', name:'鴻門宴', exam5y:5, detail:'人物性格刻畫、史傳敘事、楚漢相爭' },
+  { id:'N35', module:8, code:'古15', name:'出師表', exam5y:3, detail:'奏議文體、忠誠託孤、情理兼備' },
+  { id:'N36', module:8, code:'古15', name:'桃花源記', exam5y:2, detail:'寓言體、理想世界、陶淵明思想' },
+  { id:'N37', module:8, code:'古15', name:'師說', exam5y:0, detail:'論說文結構、尊師重道、韓愈古文運動（111-115五年皆未入題）' },
+  { id:'N38', module:8, code:'古15', name:'虯髯客傳', exam5y:4, detail:'唐傳奇、豪俠形象、小說敘事' },
+  { id:'N39', module:8, code:'古15', name:'赤壁賦', exam5y:3, detail:'賦體主客對答、人生哲理、蘇軾思想' },
+  { id:'N40', module:8, code:'古15', name:'項脊軒志', exam5y:4, detail:'抒情記敘、親情書寫、歸有光細節描寫' },
+  { id:'N41', module:8, code:'古15', name:'晚遊六橋待月記', exam5y:2, detail:'小品遊記、景物描寫、袁宏道性靈' },
+  { id:'N42', module:8, code:'古15', name:'勞山道士', exam5y:4, detail:'志怪小說、寓言諷刺、蒲松齡聊齋' },
+  { id:'N43', module:8, code:'古15', name:'勸和論', exam5y:4, detail:'議論文、地方和睦、鄭用錫臺灣書寫' },
+  { id:'N44', module:8, code:'古15', name:'鹿港乘桴記', exam5y:3, detail:'遊記鄉土書寫、洪繻今昔對比' },
+  { id:'N45', module:8, code:'古15', name:'畫菊自序', exam5y:4, detail:'托物言志、駢文特色、張李德和' }
 ];
 
 /* ===== NODE_GROUPS：側欄分組（模組層） ===== */

@@ -287,6 +287,52 @@ a:hover { color:var(--cinnabar); }
 .theme-toggle { width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:var(--paper-soft); display:inline-flex; align-items:center; justify-content:center; color:var(--ink-soft); font-size:16px; }
 .theme-toggle:hover { color:var(--cinnabar); border-color:var(--cinnabar); }
 
+/* ===== 五年命題矩陣 明細樣式 ===== */
+.matrix-legend { display:flex; flex-wrap:wrap; gap:14px 22px; padding:14px 18px; font-size:13px; color:var(--ink-soft); }
+.ml-item { display:inline-flex; align-items:center; gap:6px; }
+.dot { display:inline-block; width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.dot-direct { background:var(--cinnabar); }
+.dot-option { background:var(--ochre); }
+.dot-disputed { background:var(--rose); }
+.dot-none { background:var(--ink-faint); opacity:.4; }
+.matrix-disclaimer { font-size:12.5px; color:var(--ink-faint); line-height:1.7; padding:12px 18px; }
+.matrix-disclaimer a { color:var(--indigo); }
+.stats-toggle { display:flex; gap:8px; margin:6px 0 18px; flex-wrap:wrap; }
+.stats-tab { padding:8px 16px; font-size:13px; font-weight:600; color:var(--ink-soft); background:var(--paper-soft); border:1px solid var(--line); border-radius:var(--radius-sm); cursor:pointer; transition:all .15s; }
+.stats-tab:hover { border-color:var(--cinnabar); color:var(--ink); }
+.stats-tab.active { background:var(--cinnabar); color:#fff; border-color:var(--cinnabar); }
+.matrix-detail { min-width:720px; }
+.matrix-detail .th-year { font-size:12px; }
+.matrix-detail .th-sub { display:block; font-size:10px; color:var(--ink-faint); font-weight:400; }
+.matrix-detail .mnode-id { font-family:var(--font-body); font-size:11px; color:var(--ink-faint); font-weight:600; }
+.matrix-detail td.cell { cursor:pointer; position:relative; transition:background .15s; }
+.matrix-detail td.cell:hover { background:var(--paper-deep); }
+.matrix-detail td.cell .cell-count { display:block; font-size:9px; color:var(--ink-faint); line-height:1; margin-top:1px; }
+.matrix-detail td.cell-direct { background:rgba(185,57,47,.14); }
+.matrix-detail td.cell-direct .dot-direct { box-shadow:0 0 0 2px rgba(185,57,47,.18); }
+.matrix-detail td.cell-option { background:rgba(184,134,46,.12); }
+.matrix-detail td.cell-disputed { background:rgba(161,58,74,.12); }
+.matrix-detail td.cell.open { outline:2px solid var(--cinnabar); outline-offset:-2px; }
+.matrix-detail td.cell-freq { background:var(--paper-deep); }
+.matrix-detail td.cell-freq b { font-size:16px; color:var(--cinnabar-d); font-family:var(--font-display); }
+.matrix-detail td.cell-freq .freq-sub { font-size:11px; color:var(--ink-faint); }
+.matrix-detail tr.detail-row td { padding:0; background:var(--paper-soft); }
+.detail-box { padding:14px 18px; border-left:3px solid var(--cinnabar); background:var(--paper-soft); text-align:left; }
+.detail-title { font-family:var(--font-display); font-size:15px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+.detail-entry { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:6px 0; border-bottom:1px dashed var(--line-soft); font-size:13px; color:var(--ink-soft); }
+.detail-entry:last-child { border-bottom:none; }
+.detail-entry .dot { width:8px; height:8px; }
+.detail-entry .de-q { font-weight:600; color:var(--ink); }
+.detail-entry .de-type { font-size:11px; }
+.detail-entry .de-evidence { flex:1 1 200px; line-height:1.6; }
+.detail-entry .de-src { font-size:12px; color:var(--indigo); white-space:nowrap; }
+.detail-entry .de-src:hover { color:var(--cinnabar); }
+.src-list { list-style:none; padding:0; margin:0; }
+.src-item { padding:6px 0; font-size:13px; color:var(--ink-soft); border-bottom:1px dashed var(--line-soft); }
+.src-item:last-child { border-bottom:none; }
+.src-item a { color:var(--indigo); font-size:12px; }
+.src-item a:hover { color:var(--cinnabar); }
+
 /* ===== Responsive ===== */
 @media (max-width: 880px) {
   .menu-btn { display:flex; }
@@ -296,6 +342,7 @@ a:hover { color:var(--cinnabar); }
   #main { padding:64px 18px 60px; }
   .hero { padding:26px 22px; }
   .buster-row { grid-template-columns:1fr; }
-  .buster-cell-surface { border-right:none; border-bottom:1px solid var(--line); }
-  .card, .kcard, .qcard { padding:18px 16px; }
+  .matrix-detail { min-width:640px; }
+  .detail-entry { flex-direction:column; align-items:flex-start; gap:4px; }
+  .matrix-legend { gap:10px 16px; }
 }
